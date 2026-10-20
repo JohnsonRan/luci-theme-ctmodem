@@ -1158,12 +1158,17 @@ body.modal-overlay-active #modal_overlay {
 
 .cbi-dropdown.btn > ul:not(.dropdown) > li,
 .cbi-dropdown.cbi-button > ul:not(.dropdown) > li {
-	display: flex !important;
 	padding: 0 4px;
 	line-height: 22px;
 	border: 0;
 	color: inherit;
 	flex-grow: 0;
+}
+
+/* 只有标记了 [display] 的项显示（按钮主文字），其余保持隐藏 */
+.cbi-dropdown.btn > ul:not(.dropdown) > li[display],
+.cbi-dropdown.cbi-button > ul:not(.dropdown) > li[display] {
+	display: flex !important;
 }
 
 .cbi-dropdown.btn > .open,
@@ -1543,4 +1548,44 @@ body:has(#loginwrap) {
 #maincontent.ont-plain .table .th {
 	background: #F2F2F2;
 	border-color: #DDD;
+}
+
+/* 插件页的标签条留在内容区顶部（不搬到左栏） */
+#maincontent.ont-plain ul.cbi-tabmenu,
+ul.cbi-tabmenu.ont-no-title {
+	position: static !important;
+	width: auto !important;
+	height: auto !important;
+	display: flex !important;
+	flex-wrap: wrap;
+	visibility: visible !important;
+	opacity: 1 !important;
+	overflow: visible !important;
+	background: #E9E9E9;
+	border-bottom: 1px solid #C8C8C8;
+	margin: 0 0 8px;
+}
+
+#maincontent.ont-plain ul.cbi-tabmenu > li {
+	display: block;
+	padding: 4px 10px;
+	text-align: left;
+	background: transparent;
+}
+
+#maincontent.ont-plain ul.cbi-tabmenu > li > a {
+	display: inline;
+	color: #333;
+	line-height: 18px;
+}
+
+#maincontent.ont-plain ul.cbi-tabmenu > li.cbi-tab {
+	background: #FFFFFF;
+	border: 1px solid #C8C8C8;
+	border-bottom-color: #FFFFFF;
+}
+
+#maincontent.ont-plain ul.cbi-tabmenu > li.cbi-tab > a {
+	color: #000;
+	font-weight: normal;
 }

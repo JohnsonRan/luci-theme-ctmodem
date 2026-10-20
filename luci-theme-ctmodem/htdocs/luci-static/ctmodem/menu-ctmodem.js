@@ -175,7 +175,7 @@
 	 */
 	function watchPageTabs() {
 		var content = document.getElementById('maincontent');
-		if (!content)
+		if (!content || content.classList.contains('ont-plain'))
 			return;
 
 		function sync() {
@@ -229,8 +229,8 @@
 			return UI.menu.load();
 		}).then(function (tree) {
 			render(tree);
-			watchPageTabs();
 			markPlainPage();
+			watchPageTabs();
 		}).catch(function (e) {
 			console.error('menu-ctmodem: failed', e);
 		});
