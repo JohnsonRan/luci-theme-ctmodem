@@ -175,7 +175,7 @@
 	 */
 	function watchPageTabs() {
 		var content = document.getElementById('maincontent');
-		if (!content || content.classList.contains('ont-plain'))
+		if (!content || document.documentElement.classList.contains('ont-plain-page'))
 			return;
 
 		function sync() {

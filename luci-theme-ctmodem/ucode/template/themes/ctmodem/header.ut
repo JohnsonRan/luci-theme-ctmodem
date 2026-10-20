@@ -22,6 +22,13 @@
 	<title>{{ striptags(hostname) }}{% if (dispatched?.title): %} | {{ _(dispatched.title) }}{% endif %}</title>
 	<link rel="stylesheet" href="{{ media }}/cascade.css?v=20261020">
 	<link rel="icon" href="{{ media }}/logo.svg" sizes="any">
+	<script>
+		/* 这些页面自带布局（会往 #tabmenu 插 tab），不要套用「搬到左栏」的规则 */
+		(function () {
+			if (/openclash/i.test(location.pathname))
+				document.documentElement.classList.add('ont-plain-page');
+		})();
+	</script>
 	{% if (node?.css): %}
 	<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">
 	{% endif %}
@@ -32,7 +39,7 @@
 	<script src="{{ resource }}/cbi.js?v=20261020"></script>
 </head>
 
-<body class="lang_{{ dispatcher.lang }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">
+<body class="lang_{{ dispatcher.lang }}" data-page="{{ entityencode(join('-', length(ctx.request_path) ? ctx.request_path : ctx.path), true) }}">
 {% if (!blank_page): %}
 <div id="page">
 
@@ -64,8 +71,8 @@
 			<ul id="leftmenu"></ul>
 		</div>
 
-		<div id="maincontent">
-		<div id="content">
+		<div id="maincontent" class="container">
+		<div id="tabmenu" style="display:none"></div>
 
 			{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
 			<div class="alert-message warning">

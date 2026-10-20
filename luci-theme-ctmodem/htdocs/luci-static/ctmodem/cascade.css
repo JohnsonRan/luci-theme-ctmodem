@@ -369,7 +369,7 @@ code, pre, kbd, samp {
  */
 #page { position: relative; }
 
-#maincontent ul.cbi-tabmenu {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu {
 	position: absolute;
 	left: 0;
 	top: 280px;
@@ -384,11 +384,11 @@ code, pre, kbd, samp {
 }
 
 /* 有内嵌 tab 时隐藏了橙色标题条，列表上移对齐 */
-#maincontent ul.cbi-tabmenu.ont-no-title {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu.ont-no-title {
 	top: 250px;
 }
 
-#maincontent ul.cbi-tabmenu > li {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li {
 	display: block;
 	margin: 0;
 	padding: 10px 8px;
@@ -398,7 +398,7 @@ code, pre, kbd, samp {
 	line-height: 18px;
 }
 
-#maincontent ul.cbi-tabmenu > li > a {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li > a {
 	display: block;
 	color: #000;
 	background: transparent;
@@ -412,18 +412,18 @@ code, pre, kbd, samp {
 	text-overflow: ellipsis;
 }
 
-#maincontent ul.cbi-tabmenu > li > a:hover {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li > a:hover {
 	color: #F0422A;
 	text-decoration: underline;
 }
 
-#maincontent ul.cbi-tabmenu > li.cbi-tab,
-#maincontent ul.cbi-tabmenu > li.active {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li.cbi-tab,
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li.active {
 	background: var(--ont-orange);
 }
 
-#maincontent ul.cbi-tabmenu > li.cbi-tab > a,
-#maincontent ul.cbi-tabmenu > li.active > a {
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li.cbi-tab > a,
+html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li.active > a {
 	color: #FFF;
 	font-weight: bold;
 	text-decoration: none;
@@ -432,15 +432,25 @@ code, pre, kbd, samp {
 }
 
 @media (max-width: 900px) {
-	#maincontent ul.cbi-tabmenu {
+	html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu {
 		position: static;
 		width: auto;
 		display: flex;
 		background: #E9E9E9;
 		border-bottom: 1px solid var(--ont-border);
 	}
-	#maincontent ul.cbi-tabmenu > li { padding: 4px 10px; }
-	#maincontent ul.cbi-tabmenu > li > a { color: #333; }
+	html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li { padding: 4px 10px; }
+	html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li > a { color: #333; }
+}
+
+/* LuCI 传统 tabmenu 容器（插件会往里插 ul.tabs） */
+#tabmenu {
+	display: block;
+	margin: 0 0 8px;
+}
+
+#tabmenu:empty {
+	display: none;
 }
 
 #content {
