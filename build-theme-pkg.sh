@@ -22,6 +22,13 @@ cp -rf www/luci-static/ctmodem/. /www/luci-static/ctmodem/
 cp -rf usr/share/ucode/luci/template/themes/ctmodem/. /usr/share/ucode/luci/template/themes/ctmodem/
 
 uci -q set luci.main.mediaurlbase='/luci-static/ctmodem'
+
+# 未显式设置过语言时默认中文（跟随原机界面）
+cur_lang="$(uci -q get luci.main.lang)"
+if [ -z "$cur_lang" ] || [ "$cur_lang" = "auto" ]; then
+	uci -q set luci.main.lang='zh_cn'
+fi
+
 uci -q commit luci
 
 [ -x /etc/init.d/uhttpd ] && /etc/init.d/uhttpd restart
