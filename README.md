@@ -113,6 +113,23 @@ echo 'ls /www' | python3 -c "import socket,sys;s=socket.create_connection(('127.
   不会像参考设备那样有 7 个大项。
 - 没有内置深色模式。
 
+## 已知问题
+
+**OpenClash 等重度自定义插件页面**：这类插件大量依赖内联样式与自有 JS，并直接把 tab 插进
+LuCI 保留的 `#tabmenu`，在非 Bootstrap 主题下会出现顶部 tab 缺失、局部布局错位。
+主题已对这类页面做了兜底（`ont-plain`：撤销卡片/表单/按钮/表格的主题装饰、不搬移 tab），
+但无法完整复现官方渲染。
+
+需要完整使用这类插件时，可临时切回 Bootstrap 主题：
+
+```sh
+uci set luci.main.mediaurlbase='/luci-static/bootstrap'
+uci commit luci
+/etc/init.d/uhttpd restart
+# 用完切回：
+uci set luci.main.mediaurlbase='/luci-static/ctmodem' && uci commit luci && /etc/init.d/uhttpd restart
+```
+
 ## 素材来源
 
 `img/` 下的图片取自家庭网关设备的网页静态资源，仅用于还原该类设备的界面外观；

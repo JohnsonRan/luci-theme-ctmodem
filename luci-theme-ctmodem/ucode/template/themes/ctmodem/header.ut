@@ -12,10 +12,7 @@
 	const modelname = board.model ?? '—';
 
 	http.prepare_content('text/html; charset=UTF-8');
-
-	const _isRaw = (http.getcookie('ont_raw') ?? '') == '1';
 -%}
-{% if (_isRaw): %}{% include('themes/bootstrap/header') %}{% else %}
 <!DOCTYPE html>
 <html lang="{{ dispatcher.lang }}">
 <head>
@@ -25,17 +22,6 @@
 	<title>{{ striptags(hostname) }}{% if (dispatched?.title): %} | {{ _(dispatched.title) }}{% endif %}</title>
 	<link rel="stylesheet" href="{{ media }}/cascade.css?v=20261020">
 	<link rel="icon" href="{{ media }}/logo.svg" sizes="any">
-	<script>
-		/* 插件页（OpenClash）整体交给官方模板渲染：
-		 * 首次访问打上 ont_raw 标记并重载一次，服务端随后用 Bootstrap 模板输出 */
-		(function () {
-			if (/\/openclash(\/|$)/.test(location.pathname) &&
-			    document.cookie.indexOf('ont_raw=1') < 0) {
-				document.cookie = 'ont_raw=1; path=/; max-age=86400';
-				location.reload();
-			}
-		})();
-	</script>
 	<script>
 		/* 这些页面自带布局（会往 #tabmenu 插 tab），不要套用「搬到左栏」的规则 */
 		(function () {
@@ -111,5 +97,4 @@
 					<p>{{ _('You must enable JavaScript in your browser or LuCI will not work properly.') }}</p>
 				</div>
 			</noscript>
-{% endif %}
 {% endif %}

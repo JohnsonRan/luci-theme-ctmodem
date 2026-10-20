@@ -241,40 +241,7 @@
 			content.classList.add('ont-plain');
 	}
 
-	/* 插件页（OpenClash 等重度自定义插件）：内容区改用 iframe 加载官方渲染版本，
-	 * 由 iframe 里带 ont_raw=1 的请求走 Bootstrap 模板，插件自己的 JS/内联样式完整生效。 */
-	function setupPluginFrame() {
-		var view = document.getElementById('view');
-		if (!view || !/\/openclash(\/|$)/.test(location.pathname)) return;
-		if (/ont_raw=1/.test(location.search)) return;
-
-		/* 用 cookie 标记让服务端用官方模板渲染 iframe 内容 */
-		document.cookie = 'ont_raw=1; path=/; max-age=120';
-
-		var f = document.createElement('iframe');
-		f.src = location.pathname + location.search;
-		f.setAttribute('frameborder', '0');
-		f.style.cssText = 'width:100%;border:0;display:block;min-height:720px;background:#fff';
-
-		f.addEventListener('load', function () {
-			document.cookie = 'ont_raw=; path=/; max-age=0';
-			try {
-				var d = f.contentDocument;
-				if (!d) return;
-				var st = d.createElement('style');
-				st.textContent = 'header,.brand{display:none!important}body{padding:0!important;background:#fff}.container{max-width:none!important;width:auto!important;padding:0!important;margin:0!important}';
-				d.head.appendChild(st);
-				f.style.height = Math.max(720, d.documentElement.scrollHeight + 24) + 'px';
-			} catch (e) {}
-		});
-
-		while (view.firstChild) view.removeChild(view.firstChild);
-		view.appendChild(f);
-	}
-
 	function boot() {
-		setupPluginFrame();
-
 		L.require('ui').then(function (ui) {
 			UI = ui;
 			return UI.menu.load();
