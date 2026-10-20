@@ -443,6 +443,45 @@ html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li.active > a {
 	html:not(.ont-plain-page) #maincontent ul.cbi-tabmenu > li > a { color: #333; }
 }
 
+/* 插件页：三级菜单渲染成内容区顶部的标签条 */
+ul.ont-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background: transparent;
+	border-bottom: 1px solid var(--ont-border);
+}
+
+ul.ont-tabs > li {
+	margin: 0 4px 0 0;
+	padding: 3px 12px;
+	background: #F2F2F2;
+	border: 1px solid #D8D8D8;
+	border-bottom: 0;
+	font-size: 12px;
+}
+
+ul.ont-tabs > li > a {
+	color: #333;
+	text-decoration: none;
+}
+
+ul.ont-tabs > li.active {
+	background: #FFF;
+	border-color: var(--ont-orange);
+}
+
+ul.ont-tabs > li.active > a {
+	color: #C0392B;
+	font-weight: bold;
+}
+
+ul.ont-tabs > li > a:hover {
+	color: #F0422A;
+}
+
 /* LuCI 传统 tabmenu 容器（插件会往里插 ul.tabs） */
 #tabmenu {
 	display: block;

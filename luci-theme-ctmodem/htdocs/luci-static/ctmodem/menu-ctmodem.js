@@ -112,9 +112,27 @@
 		/* 三级菜单 */
 		var l3 = n2 ? filterMeta(UI.menu.getChildren(n2)) : [];
 
-		renderList('#leftmenu', l3, dp[3], function (child) {
+		var ontPlain = document.documentElement.classList.contains('ont-plain-page');
+		var hrefFn = function (child) {
 			return url([modeName, n1 ? n1.name : '', n2 ? n2.name : '', child.name]);
-		});
+		};
+
+		if (ontPlain && l3.length) {
+			/* 插件页自带布局：三级菜单按 Bootstrap 习惯放进内容区顶部的 #tabmenu */
+			var tm = document.getElementById('tabmenu');
+			if (tm) {
+				tm.style.display = 'block';
+				if (!tm.querySelector('ul.ont-tabs')) {
+					var ul = document.createElement('ul');
+					ul.className = 'ont-tabs';
+					tm.appendChild(ul);
+				}
+				renderList('#tabmenu ul.ont-tabs', l3, dp[3], hrefFn);
+			}
+		}
+		else {
+			renderList('#leftmenu', l3, dp[3], hrefFn);
+		}
 
 		/* 左侧标题 / 一级大标题 */
 		var loc = document.getElementById('menuloc');
