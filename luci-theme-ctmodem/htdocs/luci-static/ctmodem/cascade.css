@@ -1029,19 +1029,27 @@ div:has(> .ifacebox) {
 
 .progress > div, .cbi-progressbar > div {
 	height: 100%;
-	background: linear-gradient(#FFB268, #EF8218);
+	background: #EF8218;
 	transition: width .3s ease;
 }
 
+/* 条内数值：LuCI 只把「值 / 总值 (百分比)」放在 title 上，
+ * menu-ctmodem.js 会把它插成 <span class="ont-progress-label">。
+ * 因为填充条本身未定位，span 的包含块是整条轨道，所以文字始终居中于轨道。 */
 .cbi-progressbar > div > span {
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
+	height: 100%;
 	text-align: center;
 	line-height: 14px;
 	font-size: 11px;
-	color: #222;
+	color: #1B1B1B;
+	text-shadow: 0 0 2px rgba(255, 255, 255, .9);
+	white-space: nowrap;
+	overflow: hidden;
+	pointer-events: none;
 }
 
 /* 模态框 */

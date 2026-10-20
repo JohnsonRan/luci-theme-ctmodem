@@ -16,6 +16,6 @@
 
 </div><!-- /#page -->
 {% endif %}
-<script src="{{ media }}/menu-ctmodem.js?v=20261020"></script>
+<script src="{{ media }}/menu-ctmodem.js?v=20261020b"></script>
 </body>
 </html>

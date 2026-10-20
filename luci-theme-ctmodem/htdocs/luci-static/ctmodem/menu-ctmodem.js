@@ -232,6 +232,75 @@
 		}, 500);
 	}
 
+	/* 进度条内的数值：LuCI 的 progressbar 只把「值 / 总值 (百分比)」写在
+	 * title 属性上（如 1.2 GB / 2.0 GB (43%)），这里把它插进条中央显示。
+	 * 视图渲染是异步的，用 MutationObserver + 去抖重新扫描。
+	 */
+	var labelTimer = null;
+
+	function labelProgressBars(root) {
+		var bars = (root || document).querySelectorAll('.cbi-progressbar');
+
+		for (var i = 0; i < bars.length; i++) {
+			var bar = bars[i];
+			var fill = bar.firstElementChild;
+			var text = bar.getAttribute('title') || '';
+
+			if (!fill || fill.nodeName !== 'DIV')
+				continue;
+
+			var span = fill.querySelector('span.ont-progress-label');
+
+			if (!text) {
+				if (span)
+					fill.removeChild(span);
+				continue;
+			}
+
+			if (!span) {
+				span = document.createElement('span');
+				span.className = 'ont-progress-label';
+				fill.appendChild(span);
+			}
+
+			if (span.textContent !== text)
+				span.textContent = text;
+		}
+	}
+
+	function watchProgressBars() {
+		labelProgressBars();
+
+		if (typeof MutationObserver === 'undefined')
+			return;
+
+		var mo = new MutationObserver(function (records) {
+			for (var i = 0; i < records.length; i++) {
+				var nodes = records[i].addedNodes;
+
+				for (var j = 0; j < nodes.length; j++) {
+					var n = nodes[j];
+
+					/* 自己插入的标签不要再触发一遍，避免无谓循环 */
+					if (n.nodeType !== 1 || n.classList.contains('ont-progress-label'))
+						continue;
+
+					if (labelTimer)
+						return;
+
+					labelTimer = setTimeout(function () {
+						labelTimer = null;
+						labelProgressBars();
+					}, 80);
+
+					return;
+				}
+			}
+		});
+
+		mo.observe(document.body, { childList: true, subtree: true });
+	}
+
 	/* OpenClash 这类重度自定义插件：内容区回退为原版样式 */
 	function markPlainPage() {
 		var content = document.getElementById('maincontent');
@@ -249,6 +318,7 @@
 			render(tree);
 			markPlainPage();
 			watchPageTabs();
+			watchProgressBars();
 		}).catch(function (e) {
 			console.error('menu-ctmodem: failed', e);
 		});
