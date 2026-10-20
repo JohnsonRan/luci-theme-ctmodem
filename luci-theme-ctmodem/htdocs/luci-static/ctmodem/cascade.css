@@ -1558,8 +1558,7 @@ body:has(#loginwrap) {
 }
 
 /* 插件页的标签条留在内容区顶部（不搬到左栏） */
-#maincontent.ont-plain ul.cbi-tabmenu,
-ul.cbi-tabmenu.ont-no-title {
+#maincontent.ont-plain ul.cbi-tabmenu {
 	position: static !important;
 	width: auto !important;
 	height: auto !important;
