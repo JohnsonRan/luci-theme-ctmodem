@@ -903,7 +903,19 @@ button:disabled, .cbi-button[disabled] { opacity: .6; cursor: not-allowed; }
 	margin: 0 0 10px;
 	border-radius: var(--ont-radius);
 	overflow: hidden;
-	min-width: 200px;
+	min-width: 0;
+	width: 120px !important;   /* 比 LuCI 默认 100px 稍宽，避免收发速率换行 */
+	margin: 0;
+	font-size: 11px;
+	line-height: 16px;
+}
+
+/* 端口/接口卡片所在的网格：固定列宽、靠左紧凑排列 */
+div:has(> .ifacebox) {
+	grid-template-columns: repeat(auto-fill, 128px) !important;
+	justify-content: start !important;
+	justify-items: center !important;
+	gap: 6px;
 }
 
 .ifacebox-head {
