@@ -214,6 +214,15 @@
 		}, 500);
 	}
 
+	/* OpenClash 这类重度自定义插件：内容区回退为原版样式 */
+	function markPlainPage() {
+		var content = document.getElementById('maincontent');
+		if (!content)
+			return;
+		if (/openclash/i.test(location.pathname))
+			content.classList.add('ont-plain');
+	}
+
 	function boot() {
 		L.require('ui').then(function (ui) {
 			UI = ui;
@@ -221,6 +230,7 @@
 		}).then(function (tree) {
 			render(tree);
 			watchPageTabs();
+			markPlainPage();
 		}).catch(function (e) {
 			console.error('menu-ctmodem: failed', e);
 		});

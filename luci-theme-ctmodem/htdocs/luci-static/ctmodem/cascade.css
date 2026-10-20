@@ -1183,8 +1183,28 @@ body.modal-overlay-active #modal_overlay {
 /* 未展开时不占位 */
 .cbi-dropdown:not([open]) > ul.dropdown { display: none; }
 
-/* 展开的列表 */
-.cbi-dropdown[open] > ul.dropdown {
+/* 下拉列表：始终绝对定位（JS 可能用内联 display 展开），避免挤进按钮 */
+.cbi-dropdown > ul.dropdown {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: -1px;
+	min-width: calc(100% + 2px);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background: #FFF;
+	border: 1px solid #7E7E7E;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, .22);
+	z-index: 1100;
+	max-height: 280px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+.cbi-dropdown[open] > ul.dropdown,
+.cbi-dropdown.open > ul.dropdown {
 	display: block !important;
 	position: absolute;
 	top: 100%;
@@ -1468,4 +1488,59 @@ body:has(#loginwrap) {
 	font-size: 11px;
 	color: #888;
 	text-align: center;
+}
+
+
+/* ---------- 插件页兜底 ----------
+ * 部分插件（如 OpenClash）大量依赖自己的内联样式与自带 CSS。
+ * 这里只撤掉主题对「卡片 / 表单 / 按钮 / 表格」的装饰，保留布局与插件自身的样式，
+ * 避免内联样式变动时主题硬套造成的错位。
+ */
+#maincontent.ont-plain .cbi-section,
+#maincontent.ont-plain .cbi-section-node,
+#maincontent.ont-plain .cbi-map {
+	border: 0;
+	background: transparent;
+	margin: 0;
+}
+
+#maincontent.ont-plain .cbi-value {
+	display: block;
+	border-bottom: 0;
+	min-height: 0;
+}
+
+#maincontent.ont-plain .cbi-value-title {
+	width: auto;
+	background: transparent;
+	font-weight: normal;
+	padding: 0;
+	color: inherit;
+}
+
+#maincontent.ont-plain .cbi-value-field {
+	padding: 0;
+	line-height: inherit;
+}
+
+#maincontent.ont-plain button,
+#maincontent.ont-plain .btn,
+#maincontent.ont-plain .cbi-button {
+	height: auto;
+	min-height: 0;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	color: #333333;
+	font-weight: normal;
+	letter-spacing: 0;
+	padding: 2px 8px;
+}
+
+#maincontent.ont-plain .table {
+	border: 0;
+}
+
+#maincontent.ont-plain .table .th {
+	background: #F2F2F2;
+	border-color: #DDD;
 }
