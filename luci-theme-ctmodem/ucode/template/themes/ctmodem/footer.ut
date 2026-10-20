@@ -1,3 +1,7 @@
+{%
+	const _isRaw = (http.getcookie('ont_raw') ?? '') == '1';
+-%}
+{% if (_isRaw): %}{% include('themes/bootstrap/footer') %}{% else %}
 {#
  luci-theme-ctmodem - footer
  Licensed to the public under the MIT License.
@@ -19,3 +23,5 @@
 <script src="{{ media }}/menu-ctmodem.js?v=20261020"></script>
 </body>
 </html>
+
+{% endif %}
