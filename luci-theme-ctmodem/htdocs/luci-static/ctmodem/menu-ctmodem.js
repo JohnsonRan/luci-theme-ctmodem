@@ -105,7 +105,7 @@
 		var l2 = n1 ? filterMeta(UI.menu.getChildren(n1)) : [];
 		var n2 = findByName(l2, dp[2]) || null;
 
-		renderList('#tabmenu', l2, n2 ? n2.name : dp[2], function (child) {
+		renderList('#ont-tabbar', l2, n2 ? n2.name : dp[2], function (child) {
 			return url([modeName, n1 ? n1.name : '', child.name]);
 		});
 

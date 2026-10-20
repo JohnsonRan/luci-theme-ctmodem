@@ -3,6 +3,7 @@
  Licensed to the public under the MIT License.
 -#}
 {% if (!blank_page): %}
+		</div><!-- /#content -->
 		</div><!-- /#maincontent -->
 	</div><!-- /#gwbody -->
 

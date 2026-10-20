@@ -54,7 +54,7 @@
 				<span class="gwmodel">{{ _('Model') }}：{{ striptags(modelname) }}</span>
 			</div>
 			<ul id="topmenu"></ul>
-			<ul id="tabmenu"></ul>
+			<ul id="ont-tabbar"></ul>
 		</div>
 	</div>
 
@@ -65,6 +65,7 @@
 		</div>
 
 		<div id="maincontent">
+		<div id="content">
 
 			{% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
 			<div class="alert-message warning">

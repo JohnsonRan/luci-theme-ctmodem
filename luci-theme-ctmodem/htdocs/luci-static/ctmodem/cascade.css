@@ -284,7 +284,7 @@ code, pre, kbd, samp {
 }
 
 /* 二级菜单 */
-#tabmenu {
+#ont-tabbar {
 	display: flex;
 	flex-wrap: nowrap;
 	height: 30px;
@@ -295,11 +295,11 @@ code, pre, kbd, samp {
 	overflow: hidden;
 }
 
-#tabmenu > li { margin: 0; padding: 0; white-space: nowrap; display: flex; align-items: center; }
+#ont-tabbar > li { margin: 0; padding: 0; white-space: nowrap; display: flex; align-items: center; }
 
-#tabmenu > li + li::before { content: "|"; color: #93B2C6; padding: 0 2px; font-size: 11px; }
+#ont-tabbar > li + li::before { content: "|"; color: #93B2C6; padding: 0 2px; font-size: 11px; }
 
-#tabmenu > li > a {
+#ont-tabbar > li > a {
 	display: inline-block;
 	color: #DCE8F0;
 	line-height: 30px;
@@ -307,10 +307,10 @@ code, pre, kbd, samp {
 	padding: 0 8px;
 }
 
-#tabmenu > li > a:hover { color: #FFF; font-weight: bold; text-decoration: none; }
-#tabmenu > li.active > a { color: #FFF; font-weight: bold; text-decoration: none; }
+#ont-tabbar > li > a:hover { color: #FFF; font-weight: bold; text-decoration: none; }
+#ont-tabbar > li.active > a { color: #FFF; font-weight: bold; text-decoration: none; }
 
-#topmenu:empty, #tabmenu:empty { display: none !important; }
+#topmenu:empty, #ont-tabbar:empty { display: none !important; }
 #menuarea.no-top #topmenu { display: none; }
 
 /* ---------- 主体 ---------- */
@@ -441,6 +441,13 @@ code, pre, kbd, samp {
 	}
 	#maincontent ul.cbi-tabmenu > li { padding: 4px 10px; }
 	#maincontent ul.cbi-tabmenu > li > a { color: #333; }
+}
+
+#content {
+	display: block;
+	min-width: 0;
+	margin: 0;
+	padding: 0;
 }
 
 #maincontent {
@@ -1357,8 +1364,8 @@ body.modal-overlay-active #modal_overlay {
 	#topmenu { height: auto; flex-wrap: wrap; }
 	#topmenu > li { flex: 1 1 33.33%; }
 	#topmenu > li > a { height: 38px; line-height: 38px; font-size: 13px; }
-	#tabmenu { flex-wrap: wrap; height: auto; padding: 4px 6px; }
-	#tabmenu > li > a { line-height: 22px; }
+	#ont-tabbar { flex-wrap: wrap; height: auto; padding: 4px 6px; }
+	#ont-tabbar > li > a { line-height: 22px; }
 	#gwbody { flex-direction: column; }
 	#leftcol { width: auto; flex: 0 0 auto; background: #EFEFEF; }
 	#lefttitle { height: 30px; line-height: 30px; text-align: left; }
