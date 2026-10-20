@@ -19,3 +19,6 @@ ref/
 # 临时文件
 *.log
 *.tmp
+
+# 本地交接文档（含内网信息，勿入库）
+docs/HANDOVER.md
