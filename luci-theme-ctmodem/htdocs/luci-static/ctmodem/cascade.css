@@ -369,7 +369,7 @@ code, pre, kbd, samp {
  */
 #page { position: relative; }
 
-#contentcol ul.cbi-tabmenu {
+#maincontent ul.cbi-tabmenu {
 	position: absolute;
 	left: 0;
 	top: 280px;
@@ -384,11 +384,11 @@ code, pre, kbd, samp {
 }
 
 /* 有内嵌 tab 时隐藏了橙色标题条，列表上移对齐 */
-#contentcol ul.cbi-tabmenu.ont-no-title {
+#maincontent ul.cbi-tabmenu.ont-no-title {
 	top: 250px;
 }
 
-#contentcol ul.cbi-tabmenu > li {
+#maincontent ul.cbi-tabmenu > li {
 	display: block;
 	margin: 0;
 	padding: 10px 8px;
@@ -398,7 +398,7 @@ code, pre, kbd, samp {
 	line-height: 18px;
 }
 
-#contentcol ul.cbi-tabmenu > li > a {
+#maincontent ul.cbi-tabmenu > li > a {
 	display: block;
 	color: #000;
 	background: transparent;
@@ -412,18 +412,18 @@ code, pre, kbd, samp {
 	text-overflow: ellipsis;
 }
 
-#contentcol ul.cbi-tabmenu > li > a:hover {
+#maincontent ul.cbi-tabmenu > li > a:hover {
 	color: #F0422A;
 	text-decoration: underline;
 }
 
-#contentcol ul.cbi-tabmenu > li.cbi-tab,
-#contentcol ul.cbi-tabmenu > li.active {
+#maincontent ul.cbi-tabmenu > li.cbi-tab,
+#maincontent ul.cbi-tabmenu > li.active {
 	background: var(--ont-orange);
 }
 
-#contentcol ul.cbi-tabmenu > li.cbi-tab > a,
-#contentcol ul.cbi-tabmenu > li.active > a {
+#maincontent ul.cbi-tabmenu > li.cbi-tab > a,
+#maincontent ul.cbi-tabmenu > li.active > a {
 	color: #FFF;
 	font-weight: bold;
 	text-decoration: none;
@@ -432,18 +432,18 @@ code, pre, kbd, samp {
 }
 
 @media (max-width: 900px) {
-	#contentcol ul.cbi-tabmenu {
+	#maincontent ul.cbi-tabmenu {
 		position: static;
 		width: auto;
 		display: flex;
 		background: #E9E9E9;
 		border-bottom: 1px solid var(--ont-border);
 	}
-	#contentcol ul.cbi-tabmenu > li { padding: 4px 10px; }
-	#contentcol ul.cbi-tabmenu > li > a { color: #333; }
+	#maincontent ul.cbi-tabmenu > li { padding: 4px 10px; }
+	#maincontent ul.cbi-tabmenu > li > a { color: #333; }
 }
 
-#contentcol {
+#maincontent {
 	flex: 1 1 auto;
 	min-width: 0;
 	padding: 10px 14px 20px;
@@ -1321,7 +1321,7 @@ body.modal-overlay-active #modal_overlay {
 	#lefttitle { height: 30px; line-height: 30px; text-align: left; }
 	#leftmenu { display: flex; flex-wrap: wrap; }
 	#leftmenu > li { padding: 6px 10px; }
-	#contentcol { padding: 8px; }
+	#maincontent { padding: 8px; }
 	.cbi-value { flex-direction: column; }
 	.cbi-value-title { width: auto; flex: 0 0 auto; }
 	.cbi-value-field { width: 100%; }
@@ -1329,7 +1329,7 @@ body.modal-overlay-active #modal_overlay {
 
 @media print {
 	#gwhead, #userbar, #gwmenu, #leftcol, #gwfooter { display: none; }
-	#contentcol { padding: 0; }
+	#maincontent { padding: 0; }
 }
 
 /* ---------- 登录页（尺寸取自原机 login.css：500x275 + 4px 蓝边） ---------- */

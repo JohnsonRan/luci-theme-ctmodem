@@ -174,7 +174,7 @@
 	 * 注意：这里不使用 MutationObserver，避免与自身改动互相触发造成死循环。
 	 */
 	function watchPageTabs() {
-		var content = document.getElementById('contentcol');
+		var content = document.getElementById('maincontent');
 		if (!content)
 			return;
 

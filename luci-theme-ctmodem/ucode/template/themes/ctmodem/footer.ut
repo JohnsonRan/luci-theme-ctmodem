@@ -3,7 +3,7 @@
  Licensed to the public under the MIT License.
 -#}
 {% if (!blank_page): %}
-		</div><!-- /#contentcol -->
+		</div><!-- /#maincontent -->
 	</div><!-- /#gwbody -->
 
 	<div id="gwfooter">
