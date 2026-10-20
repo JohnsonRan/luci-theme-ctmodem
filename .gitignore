@@ -9,6 +9,9 @@ testbed/vm/qemu.pid
 testbed/vm/seriald.log
 testbed/vm/http.log
 testbed/root/
+testbed/*.tar.gz
+testbed/legacy/
+
 
 # 参考设备抓取与调试脚本
 ref/
