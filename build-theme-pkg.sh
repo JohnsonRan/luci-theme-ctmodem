@@ -23,6 +23,9 @@ cp -rf usr/share/ucode/luci/template/themes/ctmodem/. /usr/share/ucode/luci/temp
 
 uci -q set luci.main.mediaurlbase='/luci-static/ctmodem'
 
+# 注册到界面设置的主题列表（否则下拉会显示成别的主题名）
+uci -q set luci.themes.ctmodem='/luci-static/ctmodem'
+
 # 未显式设置过语言时默认中文（跟随原机界面）
 cur_lang="$(uci -q get luci.main.lang)"
 if [ -z "$cur_lang" ] || [ "$cur_lang" = "auto" ]; then
