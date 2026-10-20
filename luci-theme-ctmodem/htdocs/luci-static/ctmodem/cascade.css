@@ -904,10 +904,22 @@ button:disabled, .cbi-button[disabled] { opacity: .6; cursor: not-allowed; }
 	border-radius: var(--ont-radius);
 	overflow: hidden;
 	min-width: 0;
-	width: 120px !important;   /* 比 LuCI 默认 100px 稍宽，避免收发速率换行 */
+	width: auto !important;
 	margin: 0;
 	font-size: 11px;
 	line-height: 16px;
+}
+
+/* 端口卡片：收发速率保持一行 */
+.ifacebox[style*="width:100px"] .ifacebox-body br,
+.ifacebox[style*="width: 100px"] .ifacebox-body br {
+	display: none;
+}
+
+/* 只有 LuCI 内联指定 100px 的端口卡片才收窄 */
+.ifacebox[style*="width:100px"],
+.ifacebox[style*="width: 100px"] {
+	width: 120px !important;
 }
 
 /* 端口/接口卡片所在的网格：固定列宽、靠左紧凑排列 */
@@ -947,7 +959,7 @@ div:has(> .ifacebox) {
 	margin: 0;
 }
 
-.ifacebox-body br { display: none; }
+
 .ifacebox-body > span, .ifacebox-body > div { display: inline-block; margin-right: 8px; }
 .ifacebox-body > span { display: inline-block; margin: 1px 6px 1px 0; }
 .ifacebox-body .ifacebadge { margin: 2px 4px 2px 0; }
