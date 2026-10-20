@@ -1,0 +1,56 @@
+{#
+ luci-theme-ctmodem - 登录页（光猫风格蓝色卡片）
+ Licensed to the public under the MIT License.
+-#}
+{% include('header', { blank_page: true }) %}
+
+<div id="loginwrap">
+	<div id="loginbox">
+		<div class="login-banner" role="img" aria-label="中国电信 天翼宽带"></div>
+
+		<div class="login-welcome">欢迎使用天翼宽带政企网关</div>
+
+		<form method="post" id="loginform" action="{{ dispatcher.build_url('admin') }}">
+			<div class="login-row">
+				<label for="luci_username">{{ _('Username') }}：</label>
+				<input name="luci_username" id="luci_username" type="text" autocomplete="username"
+				       value="{{ entityencode(duser, true) }}" maxlength="64">
+			</div>
+			<div class="login-row">
+				<label for="luci_password">{{ _('Password') }}：</label>
+				<input name="luci_password" id="luci_password" type="password" autocomplete="current-password" maxlength="128">
+			</div>
+
+			{% if (fuser): %}
+			<div class="login-error">{{ _('Invalid username and/or password! Please try again.') }}</div>
+			{% endif %}
+
+			<div class="login-actions">
+				<button type="submit" class="login-btn" id="loginbtn">{{ _('Log in') }}</button>
+			</div>
+		</form>
+	</div>
+
+	<div id="loginfoot">
+		{{ version.distname }} {{ version.distversion }} · {{ version.luciname }} {{ version.luciversion }}
+	</div>
+</div>
+
+<script>
+(function () {
+	var form = document.getElementById('loginform');
+	var btn  = document.getElementById('loginbtn');
+
+	/* 与原版一致：不校验空值，直接回车即可提交（无密码设备可直接登录） */
+	form.addEventListener('submit', function () {
+		btn.disabled = true;
+		btn.textContent = '{{ _('Logging in…') }}';
+	});
+
+	var pwd = document.getElementById('luci_password');
+	if (pwd)
+		pwd.focus();
+})();
+</script>
+
+{% include('footer', { blank_page: true }) %}

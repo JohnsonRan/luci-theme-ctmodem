@@ -1,0 +1,21 @@
+{#
+ luci-theme-ctmodem - footer
+ Licensed to the public under the MIT License.
+-#}
+{% if (!blank_page): %}
+		</div><!-- /#contentcol -->
+	</div><!-- /#gwbody -->
+
+	<div id="gwfooter">
+		<ul id="modemenu"></ul>
+	</div>
+
+	<div id="gwcopy">
+		{{ version.distname }} {{ version.distversion }} {{ version.distrevision }} / {{ version.luciname }} {{ version.luciversion }}
+	</div>
+
+</div><!-- /#page -->
+{% endif %}
+<script src="{{ media }}/menu-ctmodem.js?v=20261020"></script>
+</body>
+</html>

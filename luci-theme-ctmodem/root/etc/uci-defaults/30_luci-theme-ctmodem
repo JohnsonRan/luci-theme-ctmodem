@@ -1,0 +1,12 @@
+#!/bin/sh
+# 首次安装时把默认主题切换到 ont
+[ -f /etc/config/luci ] || exit 0
+
+cur="$(uci -q get luci.main.mediaurlbase)"
+
+if [ "$cur" != "/luci-static/ctmodem" ]; then
+	uci -q set luci.main.mediaurlbase='/luci-static/ctmodem'
+	uci -q commit luci
+fi
+
+exit 0

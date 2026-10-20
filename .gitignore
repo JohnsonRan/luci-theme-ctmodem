@@ -1,0 +1,18 @@
+# 本地测试床（镜像与运行产物，勿入库）
+testbed/vm/*.img
+testbed/vm/*.img.gz
+testbed/vm/*.qcow2
+testbed/vm/*.tar.gz
+testbed/vm/console.log
+testbed/vm/serial.sock
+testbed/vm/qemu.pid
+testbed/vm/seriald.log
+testbed/vm/http.log
+testbed/root/
+
+# 参考设备抓取与调试脚本
+ref/
+
+# 临时文件
+*.log
+*.tmp
