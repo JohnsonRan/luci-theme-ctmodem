@@ -910,21 +910,15 @@ button:disabled, .cbi-button[disabled] { opacity: .6; cursor: not-allowed; }
 	line-height: 16px;
 }
 
-/* 端口卡片：收发速率保持一行 */
-.ifacebox[style*="width:100px"] .ifacebox-body br,
-.ifacebox[style*="width: 100px"] .ifacebox-body br {
-	display: none;
-}
-
-/* 只有 LuCI 内联指定 100px 的端口卡片才收窄 */
+/* 只有 LuCI 内联指定 100px 的端口卡片才收窄（收发速率两行，与 Bootstrap 一致） */
 .ifacebox[style*="width:100px"],
 .ifacebox[style*="width: 100px"] {
-	width: 120px !important;
+	width: 110px !important;
 }
 
 /* 端口/接口卡片所在的网格：固定列宽、靠左紧凑排列 */
 div:has(> .ifacebox) {
-	grid-template-columns: repeat(auto-fill, 128px) !important;
+	grid-template-columns: repeat(auto-fill, 118px) !important;
 	justify-content: start !important;
 	justify-items: center !important;
 	gap: 6px;
