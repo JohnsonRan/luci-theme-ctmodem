@@ -1110,6 +1110,58 @@ body.modal-overlay-active #modal_overlay {
 
 .cbi-dropdown > .more { display: none !important; }
 
+/* 按钮型的 cbi-dropdown（如「保存并应用」拆分按钮）不应套用输入框样式 */
+.cbi-dropdown.btn,
+.cbi-dropdown.cbi-button {
+	min-width: 0;
+	height: auto;
+	max-width: none;
+	padding: 0 2px 0 8px;
+	border: 1px solid #9B9B9B;
+	background: linear-gradient(#FDFDFD, #E4E4E4);
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.cbi-dropdown.btn.cbi-button-apply,
+.cbi-dropdown.btn.important,
+.cbi-dropdown.cbi-button.cbi-button-apply {
+	background: linear-gradient(#FFA04A, #EF8218);
+	border-color: #C96A0C;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.cbi-dropdown.btn > ul,
+.cbi-dropdown.cbi-button > ul {
+	width: auto;
+	overflow: visible;
+}
+
+.cbi-dropdown.btn > ul:not(.dropdown) > li,
+.cbi-dropdown.cbi-button > ul:not(.dropdown) > li {
+	display: flex !important;
+	padding: 0 4px;
+	line-height: 22px;
+	border: 0;
+	color: inherit;
+	flex-grow: 0;
+}
+
+.cbi-dropdown.btn > .open,
+.cbi-dropdown.cbi-button > .open,
+.cbi-dropdown.btn > .more,
+.cbi-dropdown.cbi-button > .more {
+	padding: 0 4px;
+	width: auto;
+	color: inherit;
+}
+
+.cbi-dropdown.btn > .open .dropdown,
+.cbi-dropdown.cbi-button > .open .dropdown {
+	color: #000;
+}
+
 /* 未展开时不占位 */
 .cbi-dropdown:not([open]) > ul.dropdown { display: none; }
 
