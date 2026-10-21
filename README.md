@@ -44,7 +44,7 @@
 
 ```
 luci-theme-ctmodem/
-├── Makefile                          # 放进 OpenWrt 源码 feeds/luci/themes/ 即可编译
+├── Makefile                          # 放进 feeds/luci/themes/ 或 package/ 任意子目录即可编译
 ├── htdocs/luci-static/ctmodem/
 │   ├── cascade.css                   # 全部样式
 │   ├── menu-ctmodem.js                   # 三层导航渲染
@@ -75,8 +75,24 @@ mkdir -p /tmp/th && tar -xzf /tmp/theme.tar.gz -C /tmp/th && sh /tmp/th/install.
 
 ### 方式二：编译进固件
 
-把 `luci-theme-ctmodem/` 放进 LuCI 源码树的 `themes/` 下（或 feeds），
-`make menuconfig` → LuCI → Themes → `luci-theme-ctmodem`，随固件一起打包。
+把 `luci-theme-ctmodem/` 整个目录拷到源码树的这三处之一都行（目录名别改，`luci.mk` 靠目录名
+推导包名和菜单分类）：
+
+```
+feeds/luci/themes/luci-theme-ctmodem/
+package/luci-theme-ctmodem/
+package/new/luci-theme-ctmodem/        # 自己建的子目录，如 package/new、package/extra
+```
+
+前提是 luci feed 已经装好（`./scripts/feeds update luci && ./scripts/feeds install luci`），
+Makefile 靠它定位 `luci.mk`。然后 `make menuconfig` → LuCI → Themes → `luci-theme-ctmodem`，
+随固件一起打包。
+
+拷完菜单里没有的话，多半是包索引缓存旧了，删掉缓存重扫：
+
+```bash
+rm -rf tmp && make menuconfig
+```
 
 ### 手工切换 / 回退
 
