@@ -22,3 +22,6 @@ ref/
 
 # 本地交接文档（含内网信息，勿入库）
 docs/HANDOVER.md
+
+# 本地深色预览
+.preview/
